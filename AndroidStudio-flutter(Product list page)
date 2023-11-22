@@ -1,0 +1,103 @@
+import 'package:flutter/material.dart';
+
+void main() =>runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Flutter Demo test",
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Anasayfa(title: "ürünler Lisesi Ana Sayfası"),
+    );
+  }
+}
+class Anasayfa extends StatelessWidget {
+  const Anasayfa({super.key, required String title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Ürünler Listesi"),
+      ),
+      body: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
+        children: [
+          Kutu(
+            ad: "Iphone",
+            aciklama: "Iphone pahalı ama alın",
+            fiyat: 10000,
+            resim: "iphone.png",
+          ),
+          Kutu(
+            ad: "Pixel",
+            aciklama: "NFT satışlarnın harikası",
+            fiyat: 400,
+            resim: "pixel.png",
+          ),
+          Kutu(
+            ad: "NoteBook",
+            aciklama: "Hızlı Bilgisayar",
+            fiyat: 12000,
+            resim: "laptop.png",
+          ),
+          Kutu(
+            ad: "Tablet",
+            aciklama: "Sağlam ve hızlı Tablet",
+            fiyat: 5000,
+            resim: "tablet.png",
+          ),
+          Kutu(
+            ad: "Flash bellek",
+            aciklama: "Bol Virüslü",
+            fiyat: 10,
+            resim: "pendrive.png",
+          ),
+        ],
+      ),
+    );
+  }
+}
+class Kutu extends StatelessWidget {
+  Kutu({Key? key,this.ad,this.aciklama,this.fiyat,this.resim}) :super(key: key);
+  final String? ad;
+  final String? aciklama;
+  final int? fiyat;
+  final String? resim;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(2),
+      height: 120.0,
+      child: Card(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset("assets/"+resim!),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(this.ad!,
+                    style: TextStyle(fontWeight: FontWeight.bold,),),
+                    Text(this.aciklama!),
+                    Text("Fiyatı: "+this.fiyat!.toString()),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
